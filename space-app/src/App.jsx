@@ -9,7 +9,6 @@ import fotos from './fotos.json';
 import { useState } from 'react';
 import ModalZoom from './components/ModalZoom';
 
-
 const FundoGradiente = styled.div`
   background: linear-gradient(174.61deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
   width: 100%;
@@ -45,6 +44,13 @@ const App = () => {
   const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos);
   const [fotoSelecionada, setFotoSelecionada] = useState(null);
 
+  const aoAltenarFavorito = (foto) => {
+    setFotosDaGaleria(fotosDaGaleria.map(fotoDaGaleria => ({
+      ...fotoDaGaleria,
+      favorita: fotoDaGaleria.id === foto.id ? !fotoDaGaleria.favorita : fotoDaGaleria.favorita
+    })));
+  };
+
   const aoFechar = () => {
     setFotoSelecionada(null);
   };
@@ -61,7 +67,7 @@ const App = () => {
               texto="A galeria mais completa de fotos do espaço!"
               backgroundImage={bannerBackground}
             />
-            <Galeria aoFotoSelecionada={foto => setFotoSelecionada(foto)} fotos={fotosDaGaleria} />
+            <Galeria aoFotoSelecionada={foto => setFotoSelecionada(foto)} fotos={fotosDaGaleria} aoAltenarFavorito={aoAltenarFavorito} />
           </ConteudoGaleria>
         </MainContainer>
       </AppContainer>

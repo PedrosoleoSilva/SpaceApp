@@ -1,5 +1,5 @@
-import { styled } from "styled-components"
-import BotaoIcone from "../../BotaoIcone"
+import styled from "styled-components";
+import BotaoIcone from "../../BotaoIcone";
 
 const Figure = styled.figure`
     width: ${props => props.$expandida ? '90%' : '460px'};
@@ -28,30 +28,37 @@ const Figure = styled.figure`
             font-size: 16px;
         }
     }
-`
+`;
 
 const Rodape = styled.footer`
     display: flex;
     justify-content: space-between;
     align-items: center;
-`
+`;
 
-const Imagem = ({ foto, expandida = false, aoZoomSolicitado }) => {
-    return (<Figure $expandida={expandida} id={`foto-${foto.id}`}>
-        <img src={foto.path} alt={foto.alt} />
-        <figcaption>
-            <h3>{foto.titulo}</h3>
-            <Rodape>
-                <h4>{foto.fonte}</h4>
-                <BotaoIcone>
-                    <img src="/icones/favorito.png" alt="Icone de favorito" />
-                </BotaoIcone>
-                {!expandida && <BotaoIcone aria-hidden={expandida} onClick={()=> aoZoomSolicitado(foto)}>
-                    <img src="/icones/expandir.png" alt="Icone de expandir" />
-                </BotaoIcone>}
-            </Rodape>
-        </figcaption>
-    </Figure>)
-}
+const Imagem = ({ foto, expandida = false, aoZoomSolicitado, aoAltenarFavorito }) => {
 
-export default Imagem
+    const iconeFavorito = foto.favorita ? 'icones/favorito-ativo.png' : 'icones/favorito.png';
+
+    return (
+        <Figure $expandida={expandida} id={`foto-${foto.id}`}>
+            <img src={foto.path} alt={foto.alt} />
+            <figcaption>
+                <h3>{foto.titulo}</h3>
+                <Rodape>
+                    <h4>{foto.fonte}</h4>
+                    <BotaoIcone onClick={() => aoAltenarFavorito(foto)}>
+                        <img src={iconeFavorito} alt="Icone de favorito" />
+                    </BotaoIcone>
+                    {!expandida && (
+                        <BotaoIcone aria-hidden={expandida} onClick={() => aoZoomSolicitado(foto)}>
+                            <img src="/icones/expandir.png" alt="Icone de expandir" />
+                        </BotaoIcone>
+                    )}
+                </Rodape>
+            </figcaption>
+        </Figure>
+    );
+};
+
+export default Imagem;

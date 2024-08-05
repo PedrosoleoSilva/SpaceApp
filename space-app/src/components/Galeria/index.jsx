@@ -20,7 +20,7 @@ const ImagensContainer = styled.div`
     justify-content: flex-start; 
 `;
 
-const Galeria = ({ fotos = [], aoFotoSelecionada }) => {
+const Galeria = ({ fotos = [], aoFotoSelecionada, aoAltenarFavorito }) => {
     return (
         <>
             <Tags />
@@ -30,6 +30,7 @@ const Galeria = ({ fotos = [], aoFotoSelecionada }) => {
                     <ImagensContainer>
                         {fotos.map(foto => (
                             <Imagem 
+                                aoAltenarFavorito={aoAltenarFavorito}
                                 aoZoomSolicitado={aoFotoSelecionada}
                                 key={foto.id} 
                                 foto={foto} 
