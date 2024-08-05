@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CampoTexto from "../CampoTexto";
 
 
 const HeaderEstilizado = styled.header`
@@ -16,6 +17,7 @@ const Cabecalho = () => {
     return (
         <HeaderEstilizado>
             <img src="/imagens/logo.png" alt="logo" />
+            <CampoTexto/>
         </HeaderEstilizado>
     );
 }

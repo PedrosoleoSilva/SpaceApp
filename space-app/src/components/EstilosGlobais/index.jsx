@@ -1,11 +1,20 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
+import GandhiSansRegular from './fontes/GandhiSans-Regular.otf';
+import GandhiSansBold from './fontes/GandhiSans-Bold.otf';
 
 const EstilosGlobais = createGlobalStyle`
- 
+@font-face {
+  font-family: 'GandhiSansRegular';
+  src: local('Gandhi Sans Regular'), local('GandhiSansRegular'), url(${GandhiSansRegular});
+}
+@font-face {
+  font-family: 'GandhiSansBold';
+  src: local('Gandhi Sans Bold'), local('GandhiSansBold'), url(${GandhiSansBold});
+}
 html {
   line-height: 1.15; 
   -webkit-text-size-adjust: 100%; 
-  font-family: GandhiSansRegular;
+  font-family: 'GandhiSansRegular', sans-serif;
 }
 body {
   margin: 0;
@@ -83,6 +92,7 @@ button,
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
+  appearance: button; /* Adicionado para compatibilidade */
 }
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
@@ -124,7 +134,7 @@ textarea {
   height: auto;
 }
 [type="search"] {
-  -webkit-appearance: textfield; 
+  -webkit-appearance: textfield; /* Verifique se está aplicando corretamente */
   outline-offset: -2px; 
 }
 [type="search"]::-webkit-search-decoration {
@@ -146,5 +156,6 @@ template {
 [hidden] {
   display: none;
 }
-`
-export default EstilosGlobais
+`;
+
+export default EstilosGlobais;
